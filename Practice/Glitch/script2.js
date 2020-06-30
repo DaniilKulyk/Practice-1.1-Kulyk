@@ -1,5 +1,5 @@
-var img = document.getElementById("canvas");
-var px = img.getContext("2d");
+var imgg = document.getElementById("canvas2");
+var pxx = imgg.getContext("2d");
 var body = [
   [-1, -0.68823],
   [-0.94894, -0.67126],
@@ -1124,172 +1124,215 @@ var shirt = [
 ];
 
 
-async function draw() {
-function drawLine(x0, y0, x, y) {
-  px.moveTo(x0, y0);
-  px.lineTo(x, y);
+
+async function draww() {
+function drawLline(x0, y0, x, y, x1, y1, x2, y2){
+  pxx.moveTo(x0,y0);
+  pxx.bezierCurveTo(x, y, x1, y1, x2, y2);
 }
-px.clearRect(0, 0, 500, 500);
   
-px.beginPath();
-for (var i = 1; i < body.length; ++i) {
-  if (body[i][0] == 0 && body[i][1] == 0) i++;
+pxx.clearRect(0, 0, 500, 500);
+  
+pxx.beginPath();
+for (var i = 3; i < body.length; ++i) {
+  if (body[i][0] == 0 && body[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - body[i - 3][0]),
+        220 * (1.1 - body[i - 3][1]),
+        220 * (1.1 - body[i - 2][0]),
+        220 * (1.1 - body[i - 2][1]),
         220 * (1.1 - body[i - 1][0]),
         220 * (1.1 - body[i - 1][1]),
         220 * (1.1 - body[i][0]),
         220 * (1.1 - body[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < lips.length; ++i) {
-  if (lips[i][0] == 0 && lips[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < lips.length; ++i) {
+  if (lips[i][0] == 0 && lips[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - lips[i - 3][0]),
+        220 * (1.1 - lips[i - 3][1]),
+        220 * (1.1 - lips[i - 2][0]),
+        220 * (1.1 - lips[i - 2][1]),
         220 * (1.1 - lips[i - 1][0]),
         220 * (1.1 - lips[i - 1][1]),
         220 * (1.1 - lips[i][0]),
         220 * (1.1 - lips[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < left_eye.length; ++i) {
-  if (left_eye[i][0] == 0 && left_eye[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < left_eye.length; ++i) {
+  if (left_eye[i][0] == 0 && left_eye[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - left_eye[i - 3][0]),
+        220 * (1.1 - left_eye[i - 3][1]),
+        220 * (1.1 - left_eye[i - 2][0]),
+        220 * (1.1 - left_eye[i - 2][1]),
         220 * (1.1 - left_eye[i - 1][0]),
         220 * (1.1 - left_eye[i - 1][1]),
         220 * (1.1 - left_eye[i][0]),
         220 * (1.1 - left_eye[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < right_eye.length; ++i) {
-  if (right_eye[i][0] == 0 && right_eye[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < right_eye.length; ++i) {
+  if (right_eye[i][0] == 0 && right_eye[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - right_eye[i - 3][0]),
+        220 * (1.1 - right_eye[i - 3][1]),
+        220 * (1.1 - right_eye[i - 2][0]),
+        220 * (1.1 - right_eye[i - 2][1]),
         220 * (1.1 - right_eye[i - 1][0]),
         220 * (1.1 - right_eye[i - 1][1]),
         220 * (1.1 - right_eye[i][0]),
         220 * (1.1 - right_eye[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < z.length; ++i) {
-  if (z[i][0] == 0 && z[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < z.length; ++i) {
+  if (z[i][0] == 0 && z[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - z[i - 3][0]),
+        220 * (1.1 - z[i - 3][1]),
+        220 * (1.1 - z[i - 2][0]),
+        220 * (1.1 - z[i - 2][1]),
         220 * (1.1 - z[i - 1][0]),
         220 * (1.1 - z[i - 1][1]),
         220 * (1.1 - z[i][0]),
         220 * (1.1 - z[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < hair.length; ++i) {
-  if (hair[i][0] == 0 && hair[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < hair.length; ++i) {
+  if (hair[i][0] == 0 && hair[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - hair[i - 3][0]),
+        220 * (1.1 - hair[i - 3][1]),
+        220 * (1.1 - hair[i - 2][0]),
+        220 * (1.1 - hair[i - 2][1]),
         220 * (1.1 - hair[i - 1][0]),
         220 * (1.1 - hair[i - 1][1]),
         220 * (1.1 - hair[i][0]),
         220 * (1.1 - hair[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < nose.length; ++i) {
-  if (nose[i][0] == 0 && nose[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < nose.length; ++i) {
+  if (nose[i][0] == 0 && nose[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - nose[i - 3][0]),
+        220 * (1.1 - nose[i - 3][1]),
+        220 * (1.1 - nose[i - 2][0]),
+        220 * (1.1 - nose[i - 2][1]),
         220 * (1.1 - nose[i - 1][0]),
         220 * (1.1 - nose[i - 1][1]),
         220 * (1.1 - nose[i][0]),
         220 * (1.1 - nose[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < potatos.length; ++i) {
-  if (potatos[i][0] == 0 && potatos[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < potatos.length; ++i) {
+  if (potatos[i][0] == 0 && potatos[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - potatos[i - 3][0]),
+        220 * (1.1 - potatos[i - 3][1]),
+        220 * (1.1 - potatos[i - 2][0]),
+        220 * (1.1 - potatos[i - 2][1]),
         220 * (1.1 - potatos[i - 1][0]),
         220 * (1.1 - potatos[i - 1][1]),
         220 * (1.1 - potatos[i][0]),
         220 * (1.1 - potatos[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < potatos2.length; ++i) {
-  if (potatos2[i][0] == 0 && potatos2[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < potatos2.length; ++i) {
+  if (potatos2[i][0] == 0 && potatos2[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - potatos2[i - 3][0]),
+        220 * (1.1 - potatos2[i - 3][1]),
+        220 * (1.1 - potatos2[i - 2][0]),
+        220 * (1.1 - potatos2[i - 2][1]),
         220 * (1.1 - potatos2[i - 1][0]),
         220 * (1.1 - potatos2[i - 1][1]),
         220 * (1.1 - potatos2[i][0]),
         220 * (1.1 - potatos2[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
 
-px.beginPath();
-for (var i = 1; i < shirt.length; ++i) {
-  if (shirt[i][0] == 0 && shirt[i][1] == 0) i++;
+pxx.beginPath();
+for (var i = 3; i < shirt.length; ++i) {
+  if (shirt[i][0] == 0 && shirt[i][1] == 0) i+=3;
   else {
     await new Promise(resolve => setTimeout(resolve, 10));
-    drawLine(
+    drawLline(
+        220 * (1.1 - shirt[i - 3][0]),
+        220 * (1.1 - shirt[i - 3][1]),
+        220 * (1.1 - shirt[i - 2][0]),
+        220 * (1.1 - shirt[i - 2][1]),
         220 * (1.1 - shirt[i - 1][0]),
         220 * (1.1 - shirt[i - 1][1]),
         220 * (1.1 - shirt[i][0]),
         220 * (1.1 - shirt[i][1])
-    );
-    px.closePath();
-    px.stroke();
+      );
+    pxx.closePath();
+    pxx.stroke();
   }
 }
+  
 }
-draw();
-setInterval(draw, 14000);
+draww();
+setInterval(draww, 14000);
