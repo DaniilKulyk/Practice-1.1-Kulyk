@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Summer practice #2 Kulyk</title>
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>  
+  <body>
+    <h1>Даниил Кулык Практика 2020 день 2</h1>
+    
+    <canvas id="canvas" width="720" height="600"> </canvas>
+    
+    
+    
+    
+    
+    <div class="guiWindow">
+        <input type="button" class="userInputButtons" value="Create Link" onclick="grapher.createLink();">	
+        <br>
+		<br>
+        		
+		<div style="width:50%;display:flex;padding-bottom:4px;">
+			<div style="flex-shrink: 0"><label><span style="black">f(x) = &nbsp;</span></label> </div>
+			<input type="text" class="userInput" style="width:100%" id="formula1" value="x*x-9" onchange="eventForm(this.value)">
+		</div>
+    </div>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js" defer></script>
+  </body>
+</html>
