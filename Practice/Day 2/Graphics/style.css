@@ -1,17 +1,35 @@
 /* CSS files add styling rules to your content */
 
 body {
-    font-family: helvetica, arial, sans-serif;
-    margin: 2em;
-  }
-  
-  h1 {
-    font-style: italic;
-    color: #373fff;
-  }
-  
-  
-  #userInputButtons{
-    position: absolute;
-    margin-left : 10 px;
-  }
+  font-family: helvetica, arial, sans-serif;
+  margin: 2em;
+  background-color: #202020; 
+}
+
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+canvas{
+  border: solid 3px white;
+}
+
+
+.button {
+  background-color: #202020; 
+  border: none;
+  color: white;
+  padding: 25px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  border: solid 1px white;
+}
+
+.guiWindow {
+  background-color: #202020;
+  border: none;
+  color: white;
+}

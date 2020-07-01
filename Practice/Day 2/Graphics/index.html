@@ -14,23 +14,37 @@
     <script src="/script.js" defer></script>
   </head>  
   <body>
-    <h1>Даниил Кулык Практика 2020 день 2</h1>
+    <h1 style="color:white">Даниил Кулык Практика 2020 день 2</h1>
     
     <canvas id="canvas" width="720" height="600"> </canvas>
     
     
-    
-    
-    
     <div class="guiWindow">
-        <input type="button" class="userInputButtons" value="Create Link" onclick="grapher.createLink();">	
-        <br>
-		<br>
-        		
-		<div style="width:50%;display:flex;padding-bottom:4px;">
-			<div style="flex-shrink: 0"><label><span style="black">f(x) = &nbsp;</span></label> </div>
-			<input type="text" class="userInput" style="width:100%" id="formula1" value="x*x-9" onchange="eventForm(this.value)">
-		</div>
+      <p>Функция
+			  <input type="text" id="f" value="x*x-9"/>
+        </p>
+      
+      <p>Параметр "x"
+        <input type="text" id = "xmin" size="10" value="-10" height = "30"/>
+        <input type="text" id = "xmax" size="10" value="10" height = "30"/>
+      </p>
+      <p>Параметр "y"
+        <input type="text" id = "ymin" size="10" value="-10" height = "30"/>
+        <input type="text" id = "ymax" size="10" value="10" height = "30"/>
+      </p>
+      <p>Параметр высоты и ширины
+        "W:" <input type="text" id = "W" size="10" value="720" height = "30"/>
+        "H:" <input type="text" id = "H" size="10" value="600" height = "30"/>
+      </p>
+      <p>Параметр клетки
+      "x:" <input type="text" id = "sqx" size="10" value="1" height = "30"/>
+      "y:" <input type="text" id = "sqy" size="10" value="1" height = "30"/>
+      </p>
+
+      
+      
+        <input type="button" class="button" value="Built Function" onclick="built();"/>	
+      
     </div>
 
     <!-- include the Glitch button to show what the webpage is about and
