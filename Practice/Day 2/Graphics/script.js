@@ -61,7 +61,7 @@ class Graphics1d {
     px.stroke();
     px.lineWidth = 0.2;
     px.strokeStyle = lines;
-    for (let i = 0; i < this.W; i += sqx * movex)
+    for (let i = zerox; i > 0; i -= sqx * movex) 
     {
       px.beginPath();
       px.moveTo(i, 0);
@@ -69,8 +69,22 @@ class Graphics1d {
       px.closePath();
       px.stroke();
     }
-    for (let j = 0; j < this.H; j += sqy * movey) 
+    for (let j = zeroy; j >0; j -= sqy * movey) 
     {
+      px.beginPath();
+      px.lineTo(0, j);
+      px.lineTo(this.W, j);
+      px.closePath();
+      px.stroke();
+    }
+    for (let i = zerox; i < this.W; i += sqx * movex){
+      px.beginPath();
+      px.moveTo(i, 0);
+      px.lineTo(i, this.H);
+      px.closePath();
+      px.stroke();
+    }
+    for (let j = zeroy; j < this.H; j += sqy * movey) {
       px.beginPath();
       px.lineTo(0, j);
       px.lineTo(this.W, j);
@@ -171,7 +185,6 @@ var xmin = parseFloat(document.getElementById("xmin").value),
     sqx = document.getElementById("sqx").value;
     sqy = document.getElementById("sqy").value;
 f = replaceSpecialSequence(f);
-console.log(f);
 var m = function(x){return eval(f)};
 z = new Graphics1d(xmin, xmax, ymin, ymax, W, H, m);
 z.draw();
