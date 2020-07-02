@@ -25,9 +25,15 @@ class Graphics2d {
   }
    
   evaluate() {
-    this.values = new Map();
-    for (let i = this.xmin; i <= this.xmax;i += (-this.xmin + this.xmax) / this.W) 
-      for(let j = this.ymin; j <= this.ymax; j += (-this.ymin + this.ymax) / this.H) this.values[[i, j]] = this.f(i, j);
+    this.fvalues = new Float64Array(this.H * this.W);
+    this.dots = new Array (this.H * this.W);
+    let counter = 0;
+    for (let i = this.xmin; i <= this.xmax; i += (-this.xmin + this.xmax) / this.W)
+      for (let j = this.ymin; j <= this.ymax; j += (-this.ymin + this.ymax) / this.H) 
+      {
+        this.dots[counter] = [i, j];
+        this.fvalues[counter++] = this.f(i, j);
+      }
     this.ev = 1;
   }
   
@@ -77,17 +83,20 @@ class Graphics2d {
     }
     pxx.lineWidth = 1;
     pxx.strokeStyle = dots;
-    for (let i = this.xmin;i <= this.xmax;i += (-this.xmin + this.xmax) / this.W) 
-      for(let j = this.ymin; j <= this.ymax; j += (-this.ymin + this.ymax) / this.H)
-      {
-        pxx.beginPath();
-        if(this.values[[i, j]] < 0) pxx.fillStyle = "rgba(0, 0, 255, 0.2)";
-        else if(this.values[[i, j]] > 0) pxx.fillStyle = "rgba(255, 0, 0, 0.2)";
-        else if(this.values[[i, j]] == 0) pxx.fillStyle = "rgba(255, 255, 255, 0.2)";
-        pxx.arc(zerox + i * movex, zeroy - j * movey, 1, 0, 360);
-        pxx.fill();
-        pxx.closePath()
-      }
+    
+    console.log(this.fvalues.length, this.dots.length);
+    for (let i = 0; i < this.W * this.H; i++) {
+      pxx.beginPath();
+      if (this.fvalues[i] < 0) pxx.fillStyle = "rgba(0, 0, 255, 0.2)";
+      else if (this.fvalues[i] > 0) pxx.fillStyle = "rgba(255, 0, 0, 0.2)";
+      else if (this.fvalues[i] == 0) pxx.fillStyle = "rgba(255, 255, 255, 0.2)";
+      
+      pxx.arc(zerox + this.dots[i][0] * movex, zeroy - this.dots[i][1] * movey, 1, 0, 360);
+      pxx.fill();
+      pxx.closePath();
+    }
+    
+    
     pxx.font = "25px Times New Roman";
     pxx.fillStyle = "black";
     let mx = "(" + this.xmax + ", " + this.ymax + ")", mn = "(" + this.xmin + ", " + this.ymin + ")";

@@ -25,10 +25,22 @@ class Graphics1d {
   }
    
   evaluate() {
-    this.values = new Map();
-    for (let i = this.xmin; i <= this.xmax; i += (-this.xmin + this.xmax) / this.W) this.values[i] = this.f(i);
+    let count = 0;
+    var mxe = [this.f(this.xmin), this.f(this.xmax)];
+    this.fvalues = new Float64Array(this.H * this.W);
+    this.dots = new Array(this.H * this.W);
+    for (
+      let i = this.xmin;
+      i <= this.xmax;
+      i += (-this.xmin + this.xmax) / this.W
+    ) {
+      this.dots[count] = i;
+      this.fvalues[count++] = this.f(i);
+      mxe[1] = Math.max(this.fvalues[count - 1], mxe[1]);
+      mxe[0] = Math.min(this.fvalues[count - 1], mxe[0]);
+    }
     this.ev = 1;
-    return this.values;
+    return mxe;
   }
   
   draw(
@@ -46,8 +58,8 @@ class Graphics1d {
     let 
     movex = this.W / (-this.xmin + this.xmax),
     movey = this.H / (-this.ymin + this.ymax),
-    zerox = Math.abs(this.xmin) * movex,
-    zeroy = Math.abs(this.ymin) * movey;
+    zerox = -this.xmin * movex,
+    zeroy = this.ymax * movey;
     px.fillStyle = background;
     px.fillRect(0, 0, z.W, z.H);
     px.beginPath();
@@ -61,23 +73,7 @@ class Graphics1d {
     px.stroke();
     px.lineWidth = 0.2;
     px.strokeStyle = lines;
-    for (let i = zerox; i > 0; i -= sqx * movex) 
-    {
-      px.beginPath();
-      px.moveTo(i, 0);
-      px.lineTo(i, this.H);
-      px.closePath();
-      px.stroke();
-    }
-    for (let j = zeroy; j >0; j -= sqy * movey) 
-    {
-      px.beginPath();
-      px.lineTo(0, j);
-      px.lineTo(this.W, j);
-      px.closePath();
-      px.stroke();
-    }
-    for (let i = zerox; i < this.W; i += sqx * movex){
+    for (let i = zerox; i < this.W; i += sqx * movex) {
       px.beginPath();
       px.moveTo(i, 0);
       px.lineTo(i, this.H);
@@ -91,38 +87,73 @@ class Graphics1d {
       px.closePath();
       px.stroke();
     }
+    for (let i = zerox; i > 0; i -= sqx * movex) {
+      px.beginPath();
+      px.moveTo(i, 0);
+      px.lineTo(i, this.H);
+      px.closePath();
+      px.stroke();
+    }
+    for (let j = zeroy; j > 0; j -= sqy * movey) {
+      px.beginPath();
+      px.lineTo(0, j);
+      px.lineTo(this.W, j);
+      px.closePath();
+      px.stroke();
+    }
     px.beginPath();
     px.lineWidth = 1;
     px.strokeStyle = dots;
+    
     px.moveTo(zerox + this.xmin * movex, zeroy - this.f(this.xmin) * movey);
-    for (let i = this.xmin; i <= this.xmax; i += (-this.xmin + this.xmax) / this.W) 
+    for (let i = 0; i <= this.H * this.W; i++) 
     {
-      console.log(i, this.values[i]);
-      if (i!=this.xmin)
+      if (this.dots[i] != this.xmin) 
       {
-        let check1 = this.values[i];
-        let check2 = this.values[i-(-this.xmin + this.xmax) / this.W] ;
-        if(check1*check2 < 0 && (Math.abs(check1 - check2) > this.ymax - this.ymin)) 
-        {
-          px.stroke();
-          px.closePath();
-          px.beginPath();
-          px.fillStyle = gaps;
-          px.arc(zerox + i  * movex, zeroy - movey * this.ymax, movex / 10, 0, 180);
-          px.arc(zerox + i  * movex, zeroy - movey * this.ymin, movex / 10, 0, 180);
-          px.fill();
-          px.closePath();
-          px.beginPath();
+        let check1 = this.fvalues[i];
+        let check2 = this.fvalues[i - 1];
+        if (check1 * check2 <= 0) {
+          if (Math.abs(check1 - check2) > this.ymax - this.ymin) 
+          {
+            px.stroke();
+            px.closePath();
+            px.beginPath();
+            px.fillStyle = gaps;
+            px.arc(zerox + this.dots[i] * movex, zeroy - movey * this.ymax, movex / 10, 0, 180);
+            px.arc(zerox + this.dots[i] * movex, zeroy - movey * this.ymin, movex / 10, 0, 180);
+            px.fill();
+            px.closePath();
+            px.beginPath();
+          }
+          else {
+            px.stroke();
+            px.closePath();
+            px.beginPath();
+            px.fillStyle = zero;
+            px.arc(zerox + this.dots[i] * movex, zeroy, movex / 10, 0, 180);
+            px.fill();
+            px.closePath();
+            px.beginPath();
+            px.moveTo(
+              zerox + this.dots[i - 1] * movex,
+              zeroy - this.fvalues[i - 1] * movey
+            );
+            px.lineTo(zerox + this.dots[i] * movex, zeroy - this.fvalues[i] * movey);
+          }
         }
-        else px.lineTo(zerox + i * movex, zeroy - this.values[i] * movey);
+        else px.lineTo(zerox + this.dots[i] * movex, zeroy - this.fvalues[i] * movey);
       }
-      else px.lineTo(zerox + i * movex, zeroy - this.values[i] * movey);
     }
+    
+    
     px.stroke();
     px.closePath();
+    
+    
     px.font = "25px Times New Roman";
     px.fillStyle = "black";
-    let mx = "(" + this.xmax + ", " + this.ymax + ")", mn = "(" + this.xmin + ", " + this.ymin + ")";
+    let mx = "(" + this.xmax + ", " + this.ymax + ")", 
+        mn = "(" + this.xmin + ", " + this.ymin + ")";
     px.fillText(mx, zerox + this.xmax * movex - (20 * mx.length) / 1.8, zeroy + this.ymin * movey + 25);
     px.fillText(mn, zerox + this.xmin * movex + 5, zeroy + this.ymax * movey - 10);
   }
@@ -133,11 +164,14 @@ class Graphics1d {
     zero = "indigo",
     gaps = "magenta",
     background = "gray"
-  ) {
-    this.ymin = this.f(this.xmin);
-    this.ymax = this.f(this.xmax);
-
+  ) 
+  {
+  console.log(this.ymin, this.ymax);
+    if (this.ev == 0) var mx = this.evaluate();
+    this.ymin = Math.min(mx[0], mx[1]);
+    this.ymax = Math.max(mx[0], mx[1]);
     this.draw(dots, lines, zero, gaps, background);
+    console.log(this.ymin, this.ymax);
   }
 }
 

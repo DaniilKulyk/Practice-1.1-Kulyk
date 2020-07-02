@@ -19,31 +19,31 @@
     <h1 style="color:white">Даниил Кулык Практика 2020 день 2</h1>
     
     <details style="color:white">
-    <summary>График f(x)</summary>
+    <summary>График F(x)</summary>
     
     <canvas id="canvas" width="720" height="600"> </canvas>
     
     
     <div class="guiWindow">
-      <p>Функция
-			  <input type="text" id="f" value="x*x-9"/>
+      <p>Функция f(x):
+			  <input type="text" id="f" value="x*x-9" size="10" height = "30" class="colortext"/>
         </p>
       
-      <p>Параметр "x"
-        <input type="text" id = "xmin" size="10" value="-10" height = "30"/>
-        <input type="text" id = "xmax" size="10" value="10" height = "30"/>
+      <p>Параметр "x":<br>
+        x min: <input type="text" id = "xmin" size="10" value="-10" height = "30" class="colortext"/>&nbsp;
+        x max: <input type="text" id = "xmax" size="10" value="10" height = "30" class="colortext"/>
       </p>
-      <p>Параметр "y"
-        <input type="text" id = "ymin" size="10" value="-10" height = "30"/>
-        <input type="text" id = "ymax" size="10" value="10" height = "30"/>
+      <p>Параметр "y":<br>
+        y min: <input type="text" id = "ymin" size="10" value="-10" height = "30" class="colortext"/>&nbsp;
+        y max: <input type="text" id = "ymax" size="10" value="10" height = "30" class="colortext"/>
       </p>
-      <p>Параметр высоты и ширины
-        "W:" <input type="text" id = "W" size="10" value="720" height = "30"/>
-        "H:" <input type="text" id = "H" size="10" value="600" height = "30"/>
+      <p>Параметр высоты и ширины<br>
+        W: <input type="text" id = "W" size="10" value="720" height = "30" class="colortext"/>&nbsp;
+        H: <input type="text" id = "H" size="10" value="600" height = "30" class="colortext"/>
       </p>
-      <p>Параметр клетки
-      "x:" <input type="text" id = "sqx" size="10" value="1" height = "30"/>
-      "y:" <input type="text" id = "sqy" size="10" value="1" height = "30"/>
+      <p>Параметр клетки<br>
+      x: <input type="text" id = "sqx" size="10" value="1" height = "30" class="colortext"/>&nbsp;
+      y: <input type="text" id = "sqy" size="10" value="1" height = "30" class="colortext"/>
       </p>
 
         <input type="button" class="button" value="Built Function" onclick="built();"/>	
@@ -54,31 +54,31 @@
     
     
     <details style="color:white">
-    <summary>Карта невязки вещественной числовой функции f(x,y)</summary>
+    <summary>Карта невязки вещественной числовой функции F(x,y)</summary>
       
       <canvas id="canvas2" width="720" height="600"> </canvas>
     
     
     <div class="guiWindow">
-      <p>Функция
-			  <input type="text" id="f1" value="x*x+y*y-81"/>
+      <p>F(x,y)
+			  <input type="text" id="f1" value="x*x+y*y-81" class="colortext"/>
         </p>
       
-      <p>Параметр "x"
-        <input type="text" id = "xmin1" size="10" value="-10" height = "30"/>
-        <input type="text" id = "xmax1" size="10" value="10" height = "30"/>
+      <p>Параметр "x":<br>
+        x min: <input type="text" id = "xmin1" size="10" value="-10" height = "30" class="colortext"/>&nbsp;
+        x max: <input type="text" id = "xmax1" size="10" value="10" height = "30" class="colortext"/>
       </p>
-      <p>Параметр "y"
-        <input type="text" id = "ymin1" size="10" value="-10" height = "30"/>
-        <input type="text" id = "ymax1" size="10" value="10" height = "30"/>
+      <p>Параметр "y":<br>
+        y min: <input type="text" id = "ymin1" size="10" value="-10" height = "30" class="colortext"/>&nbsp;
+        y max: <input type="text" id = "ymax1" size="10" value="10" height = "30" class="colortext"/>
       </p>
-      <p>Параметр высоты и ширины
-        "W:" <input type="text" id = "W1" size="10" value="512" height = "30"/>
-        "H:" <input type="text" id = "H1" size="10" value="512" height = "30"/>
+      <p>Параметр высоты и ширины<br>
+        W: <input type="text" id = "W1" size="10" value="512" height = "30" class="colortext"/>&nbsp;
+        H: <input type="text" id = "H1" size="10" value="512" height = "30" class="colortext"/>
       </p>
-      <p>Параметр клетки
-      "x:" <input type="text" id = "sqx1" size="10" value="1" height = "30"/>
-      "y:" <input type="text" id = "sqy1" size="10" value="1" height = "30"/>
+      <p>Параметры клетки:<br>
+      x: <input type="text" id = "sqx1" size="10" value="1" height = "30" class="colortext"/>&nbsp;
+      y: <input type="text" id = "sqy1" size="10" value="1" height = "30" class="colortext"/>
       </p>
 
         <input type="button" class="button" value="Built Function" onclick="built_1();"/>	
@@ -88,11 +88,55 @@
     
     
     
+    <details style="color:white">
+    <summary>Задание 2.5 "Смешарики"</summary>
+      <p>Если хотите получить изображение которой представляет из себя дом и смешариков Кроша, Ежика, 
+        подставьте функцию ниже в Карту невязки вещественной числовой функции F(x,y):</p>
+      <p>
+        ((abs(x-y+5)+abs(x+y-5)-10)*(x*x+(y-5)*(y-5)-9)*((y-10)*(y-x-15)*(y+x-15)))*(((x+7)*(x+7)+((y+5.6)*(y+5.6)))-3)*
+        (((((x+8)*(x+8))/0.9)+((y+7.5)*(y+7.5))/0.06)-1)*
+        (((((x+6)*(x+6))/0.9)+((y+7.5)*(y+7.5))/0.06)-1)*
+        ((((x*cos(-1)-y*sin(-1)+10)*(x*cos(-1)-y*sin(-1)+10))/25 + ((x*sin(-1)+y*cos(-1)-4.5)*(x*sin(-1)+y*cos(-1)-4.5))/3) - 0.04)*
+        ((((x*cos(-0.4)-y*sin(-0.4)+6)*(x*cos(-0.4)-y*sin(-0.4)+6))/25 + 
+        ((x*sin(-0.4)+y*cos(-0.4)+3.2)*(x*sin(-0.4)+y*cos(-0.4)+3.2))/3) - 0.05)*
+        ((((x*cos(3.4)-y*sin(3.4)-6)*(x*cos(3.4)-y*sin(3.4)-6))/0.2 + 
+        ((x*sin(3.4)+y*cos(3.4)-4.1)*(x*sin(3.4)+y*cos(3.4)-4.1))/3.3) - 0.7)*
+        ((((x*cos(-0.4)-y*sin(-0.4)+8.8)*(x*cos(-0.4)-y*sin(-0.4)+8.8))/0.2 + 
+        ((x*sin(-0.4)+y*cos(-0.4)-0.8)*(x*sin(-0.4)+y*cos(-0.4)-0.8))/3.3) - 0.7)*
+        (((x+7.8)*(x+7.8)+(y+5.4)*(y+5.4))-0.1)*(((x+6.3)*(x+6.3)+(y+5.4)*(y+5.4))-0.1)*
+        ((((x*cos(-0.4)-y*sin(-0.4)+8.9)*(x*cos(-0.4)-y*sin(-0.4)+8.9))/2 + 
+        ((x*sin(-0.4)+y*cos(-0.4)+3.2)*(x*sin(-0.4)+y*cos(-0.4)+3.2))/0.3) - 0.1)*
+        ((x+6.3)*(x+6.3)+(x+5.4)*(x+5.4)-0.2)*(((x-7)*(x-7)+(y+5.6)*(y+5.6))-3)*
+        (((x-8)*(x-8)+(y+7.6)*(y+7.6))-0.2)*(((x-6)*(x-6)+(y+7.6)*(y+7.6))-0.2)*
+        ((((x*cos(3.4)-y*sin(3.4)+10.8)*(x*cos(3.4)-y*sin(3.4)+10.8))/25 + 
+        ((x*sin(3.4)+y*cos(3.4)-3)*(x*sin(3.4)+y*cos(3.4)-3))/3) - 0.05)*
+        ((((x*cos(-0.4)-y*sin(-0.4)-1.6)*(x*cos(-0.4)-y*sin(-0.4)-1.6))/25 + 
+        ((x*sin(-0.4)+y*cos(-0.4)+7)*(x*sin(-0.4)+y*cos(-0.4)+7))/3) - 0.05)*
+        (((((x-7)*(x-7))/0.4)+(((y+6.5)*(y+6.5))/0.4))-0.1)*(((x-7.4)*(x-7.4)+(y+5.4)*(y+5.4))-0.1)*
+        (abs(x-y-11.6)+abs(x+y-0.8)-1)*(((x-6.2)*(x-6.2)+(y+5.4)*(y+5.4))-0.1)*
+        (abs(x-y-12.8)+abs(x+y-2)-1)*(((x-8.3)*(x-8.3)/0.7)+((x+5.4)*(x+5.4)/0.003)-0.2)*
+        (((x-5.5)*(x-5.5)/0.7)+((x+5.4)*(x+5.4)/0.01)-0.03)
+      </p>
+      <p>
+        <ol style="color:white">Рекомендованные параметры:
+          <li>x min: "-20",<br>
+              x max: "20".</li>
+          <li>x min: "-20", <br>
+              x max: "20".</li>
+        </ol>
+      </p>
     
     
     
     
     
+    
+    
+    
+    
+    
+    
+    </details>
     
     
     
