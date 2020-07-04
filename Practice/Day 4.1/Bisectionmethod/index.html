@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Hello!</title>
+    <title>Day 4, variant 1</title>
     
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
@@ -17,12 +17,22 @@
   <body>
     <h1 style="color:white">Кулык Даниил, практика, день 4, вариант 1</h1>
     
-    
+    <div class="condition">
+      <h3>a) Найти корни методом бисекции</h3> 
+         <p>Найти корни на заданном отрезкe мeтодом бисeкции. Для каждого корня указать количество итераций.</p>
+      <h3>б) Визуализировать поиск корней методом бисекции</h3>
+         <p>Визуализировать процeсс поиска корнeй с помощью класса, использующего 
+          класс Graphics1d（смотри задачи второго дня）. Каждый шаг метода должен
+          показываться с заданным временным интервалом (по умолчанию – 2 секунды)</p>
+      <h3>в) Визуализировать поиск параметра a ддля полинома qa(x)</h3>
+         <p>Показать процeсс поиска параметра a с помощью приложeния, использующeго класс Graphics2d </p>  
+    </div>
+    <br>
     
 <canvas id="C1" width="512" height="512"></canvas>
 <div class="guiWindow">
     <p>Введите функцию: </p>
-    <input type="text" size="20" height = "30" id="func" value="sin(x)">
+    <input type="text" size="20" height = "30" id="func" value="cos(x)">
     <p>Границы по Х:  xmax: <input type="text" size="5" height = "30" id="xmax" value="5">,&nbsp;xmin: <input type="text" size="5" id="xmin" value="-5"> </p>
     <p>Границы по Y:  ymax: <input type="text" size="5" height = "30" id="ymax" value="5">,&nbsp;ymin: <input type="text" size="5" id="ymin" value="-5"> </p>
     
