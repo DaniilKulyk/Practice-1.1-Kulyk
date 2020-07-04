@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hello!</title>
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's javascript file -->
+    <script src="Math.js" defer></script>
+    <script src="/script.js" defer></script>
+  </head>  
+  <body>
+    <h1 style="color:white">Кулык Даниил, практика, день 4, вариант 1</h1>
+    
+    
+    
+<canvas id="C1" width="512" height="512"></canvas>
+<div class="guiWindow">
+    <p>Введите функцию: </p>
+    <input type="text" size="20" height = "30" id="func" value="sin(x)">
+    <p>Границы по Х:  xmax: <input type="text" size="5" height = "30" id="xmax" value="5">,&nbsp;xmin: <input type="text" size="5" id="xmin" value="-5"> </p>
+    <p>Границы по Y:  ymax: <input type="text" size="5" height = "30" id="ymax" value="5">,&nbsp;ymin: <input type="text" size="5" id="ymin" value="-5"> </p>
+    
+    <input type="button" class="button" value="Build" onclick="build()">
+  
+    <p>Точность dx: <input type="text" size="20" height = "30" id="dx" value="0.000000001"></p>  
+    <p>Задержка между шагами: <input type="text" size="10" height = "30" id="wait" value="2000">&nbsp;мс.</p>
+    <input type="button" class="button" value="Find roots" onclick="build(); Bisection();">
+
+    <p>Корни функции методом Бисекции</p>
+    <p id="status"></p>
+    <p id="pointsholder"></p>
+  
+    
+    </div>
+    
+    
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js" defer></script>
+  </body>
+</html>
