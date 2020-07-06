@@ -36,10 +36,10 @@ class Graphics1D
         this.evaluate();
         let stepx = this.W / (-this.xmin + this.xmax), stepy = this.H / (-this.ymin + this.ymax),
             zerox = -this.xmin * stepx, zeroy = this.ymax * stepy;
-        console.log("In draw: ");
-        console.log("xmin: "+this.xmin+" xmax "+this.xmax+" ymin "+this.ymin+" ymax "+this.ymax+" Fmin,Fmax "+this.Fmin+" "+this.Fmax);
-        console.log("stepx: "+stepx+" stepy "+stepy);
-        console.log("zerox:"+zerox+" zeroy "+zeroy);
+        // console.log("In draw: ");
+        // console.log("xmin: "+this.xmin+" xmax "+this.xmax+" ymin "+this.ymin+" ymax "+this.ymax+" Fmin,Fmax "+this.Fmin+" "+this.Fmax);
+        // console.log("stepx: "+stepx+" stepy "+stepy);
+        // console.log("zerox:"+zerox+" zeroy "+zeroy);
 
         px.fillStyle = bg;
         px.fillRect(0, 0, this.W, this.H);
@@ -75,7 +75,7 @@ class Graphics1D
         px.lineWidth = 1;
         px.strokeStyle = dots;
         px.moveTo(zerox + this.xmin * stepx, zeroy - this.f(this.xmin) * stepy);
-        console.log("drawing: "+this.ymin+" "+this.ymax);
+        //console.log("draw: "+this.ymin+" "+this.ymax);
         this.zerocount = 0;
         this.zer.clear();
         for (let i = this.xmin; i <= this.xmax; i += (-this.xmin + this.xmax) / this.W)
@@ -143,7 +143,7 @@ class Graphics1D
         this.evaluate();
         this.ymin = this.Fmin;
         this.ymax = this.Fmax;
-        console.log("autodraw "+this.Fmin+" "+this.Fmax);
+        //console.log("autodraw "+this.Fmin+" "+this.Fmax);
         this.draw(dots, axis, zeros, gaps, bg);
     }
 
@@ -195,7 +195,7 @@ function build() //delete
         a = parseFloat(document.getElementById("a").value);
         IW = 512,
         IH = 512;
-    console.log(Ixmin, Ixmax, Iymin, IW, IH, If);
+    //console.log(Ixmin, Ixmax, Iymin, IW, IH, If);
     x.H = IH;
     x.W = IW;
     document.getElementById("C1").width = IW;
@@ -268,11 +268,11 @@ async function Bisection() {
   
     for(let i=1; i<=x.zerocount; i++)
     {
-        document.getElementById("status").innerText="Находим "+i+"-й корень: \n";
+        document.getElementById("status").innerText="Находим " + i + "-й корень: \n";
         var xnow = x.zer[i];
         var xnext = xnow-1;
-        var iterations = 0;
-        document.getElementById("status").innerText+="X"+iterations+" = "+xnow+"\n";
+        var iterations = 1;
+        document.getElementById("status").innerText+="X" + iterations + " = " + xnow + "\n";
 
         px.beginPath();
         px.arc(zerox + xnow * stepx, zeroy, stepx / 30, 0, 180);
@@ -295,7 +295,7 @@ async function Bisection() {
 		        
             
             iterations++;
-            document.getElementById("status").innerText+="X"+iterations+" = "+xnext+"\n";
+            document.getElementById("status").innerText+="X" + iterations + " = " + xnext + "\n";
 
             px.beginPath();
             px.arc(zerox + xnext * stepx, zeroy, stepx / 30, 0, 180);
@@ -323,9 +323,12 @@ async function Bisection() {
         }
       
         if(root==0)
-          {
-            document.getElementById("pointsholder").innerText += "x"+ displayedpoints +" = " + xnext.toFixed(3) + " | f(x) = "+fnow(xnext).toFixed(3) + " | Итерации: "+iterations+".\n";
-          }
+        {
+          displayedpoints++;
+          var fnow = function(x) { return eval(replaceSpecialSequence(document.getElementById("func").value)); };
+          document.getElementById("pointsholder").innerText += "x"+ displayedpoints +" = " + xnext.toFixed(3) + " | f(x) = "+fnow(xnext).toFixed(3) + " | Итерации: "+iterations+".\n";
+          document.getElementById("status").innerText += "Корень = " + xnext.toFixed(3) + " найден с точностью " + dx + ".";
+        }
       
         //else document.getElementById("status").innerText+="Корень="+xnext+" найден с нужной точностью.";
       
