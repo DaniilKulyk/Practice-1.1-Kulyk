@@ -272,7 +272,7 @@ async function Bisection() {
         var xnow = x.zer[i];
         var xnext = xnow-1;
         var iterations = 1;
-        document.getElementById("status").innerText+="X" + iterations + " = " + xnow + "\n";
+        document.getElementById("status").innerText+="X" + iterations + " = " + xnow.toFixed(Math.abs(Math.log10(dx))) + "." + "\n";
 
         px.beginPath();
         px.arc(zerox + xnow * stepx, zeroy, stepx / 30, 0, 180);
@@ -295,7 +295,7 @@ async function Bisection() {
 		        
             
             iterations++;
-            document.getElementById("status").innerText+="X" + iterations + " = " + xnext + "\n";
+            document.getElementById("status").innerText+="X" + iterations + " = " + xnext.toFixed(Math.abs(Math.log10(dx))) + "." + "\n";
 
             px.beginPath();
             px.arc(zerox + xnext * stepx, zeroy, stepx / 30, 0, 180);
