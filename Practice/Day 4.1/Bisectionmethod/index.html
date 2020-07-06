@@ -24,7 +24,7 @@
          <p>Визуализировать процeсс поиска корнeй с помощью класса, использующего 
           класс Graphics1d（смотри задачи второго дня）. Каждый шаг метода должен
           показываться с заданным временным интервалом (по умолчанию – 2 секунды)</p>
-      <h3>в) Визуализировать поиск параметра a ддля полинома qa(x)</h3>
+      <h3>в) Визуализировать поиск параметра a для полинома qa(x)</h3>
          <p>Показать процeсс поиска параметра a с помощью приложeния, использующeго класс Graphics2d </p>  
     </div>
     <br>
@@ -32,14 +32,14 @@
 <canvas id="C1" width="512" height="512"></canvas>
 <div class="guiWindow">
     <p>Введите функцию: </p>
-    <input type="text" size="20" height = "30" id="func" value="cos(x)">
-    <p>Границы по Х:  xmax: <input type="text" size="5" height = "30" id="xmax" value="5">,&nbsp;xmin: <input type="text" size="5" id="xmin" value="-5"> </p>
-    <p>Границы по Y:  ymax: <input type="text" size="5" height = "30" id="ymax" value="5">,&nbsp;ymin: <input type="text" size="5" id="ymin" value="-5"> </p>
-    
+    <input type="text" size="20" height = "30" id="func" value="cos(x*a)" class="colortext">
+    <p>Параметр x:  xmax: <input type="text" size="5" height = "30" id="xmax" value="5" class="colortext">,&nbsp;xmin: <input type="text" size="5" id="xmin" value="-5" class="colortext"> </p>
+    <p>Параметр y:  ymax: <input type="text" size="5" height = "30" id="ymax" value="5" class="colortext">,&nbsp;ymin: <input type="text" size="5" id="ymin" value="-5" class="colortext"> </p>
+    <p>Параметр a: <input type="text" id="a" size="5" value="1" height="30" class="colortext"/></p>
     <input type="button" class="button" value="Build" onclick="build()">
   
-    <p>Точность dx: <input type="text" size="20" height = "30" id="dx" value="0.000000001"></p>  
-    <p>Задержка между шагами: <input type="text" size="10" height = "30" id="wait" value="2000">&nbsp;мс.</p>
+    <p>Точность dx: <input type="text" size="20" height = "30" id="dx" value="0.000000001" class="colortext"></p>  
+    <p>Задержка между действиями (в мс):<input type="text" size="10" height = "30" id="wait" value="2000" class="colortext"></p>
     <input type="button" class="button" value="Find roots" onclick="build(); Bisection();">
 
     <p>Корни функции методом Бисекции</p>

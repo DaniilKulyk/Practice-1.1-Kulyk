@@ -1,8 +1,8 @@
-var graph = document.getElementById("C1");
-var px = graph.getContext("2d");
+var canvas = document.getElementById("C1");
+var px = canvas.getContext("2d");
 
 
-function sleep(ms) {
+function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -192,6 +192,7 @@ function build() //delete
         Ixmax = parseFloat(document.getElementById("xmax").value),
         Iymin = parseFloat(document.getElementById("ymin").value),
         Iymax = parseFloat(document.getElementById("ymax").value),
+        a = parseFloat(document.getElementById("a").value);
         IW = 512,
         IH = 512;
     console.log(Ixmin, Ixmax, Iymin, IW, IH, If);
@@ -229,23 +230,24 @@ function build() //delete
 //     x.autodraw();
 // }
 
-function InitializeFieldsForBisection()
+function FieldsForBisection()
 {
     var
         Ixmin = parseFloat(document.getElementById("xmin").value),
         Ixmax = parseFloat(document.getElementById("xmax").value),
         Iymin = parseFloat(document.getElementById("ymin").value),
         Iymax = parseFloat(document.getElementById("ymax").value);
-    //if(document.getElementById("gridlow").checked) x.gridAmplifier=parseFloat(document.getElementById("gridamp").value);
+        a = parseFloat(document.getElementById("a").value);
     x.xmax = Ixmax;
     x.xmin = Ixmin;
     x.ymax = Iymax;
     x.ymin = Iymin;
+    x.a=a;
 }
 
 
 async function Bisection() {
-    InitializeFieldsForBisection();
+    FieldsForBisection();
     document.getElementById("pointsholder").innerText="";
     let dx = parseFloat(document.getElementById("dx").value);
     
@@ -257,15 +259,16 @@ async function Bisection() {
 
     let stepx = x.W / (-x.xmin + x.xmax), stepy = x.H / (-x.ymin + x.ymax),
         zerox = -x.xmin * stepx, zeroy = x.ymax * stepy;
+  
     px.fillStyle = "white";
   
   
     var displayedpoints = 0;
-    await sleep(delay);
+    await wait(delay);
   
     for(let i=1; i<=x.zerocount; i++)
     {
-        document.getElementById("status").innerText="Находим "+i+"-й корень \n Последовательность приближений: \n";
+        document.getElementById("status").innerText="Находим "+i+"-й корень: \n";
         var xnow = x.zer[i];
         var xnext = xnow-1;
         var iterations = 0;
@@ -276,7 +279,7 @@ async function Bisection() {
         px.fill();
         px.closePath();
 
-        await sleep(delay);
+        await wait(delay);
       
         while(Math.abs(xnext-xnow)>dx)
         {
@@ -299,28 +302,35 @@ async function Bisection() {
             px.fill();
             px.closePath();
 
-            await sleep(delay);
+            await wait(delay);
           
             if(iterations>1000)
             {
-                alert("ALERT! TO MANY REQUESTS");
+                alert("ALERT! TO MANY REQUESTS! STOP DOING IT");
                 break;
             }
         }
       
 
-        var root = (f(xnext+0.00001)*f(xnext-0.00001)>0);
+        var root = (f(xnext+0.00001)*f(xnext-0.00001) > 0);
+      
         if(root)
         {
             displayedpoints++;
             var fnow = function(x) { return eval(replaceSpecialSequence(document.getElementById("func").value)); };
-            document.getElementById("pointsholder").innerText += "x"+displayedpoints+" = " + xnext.toFixed(3) + " | f(x) = "+fnow(xnext).toFixed(3) + " | Количество итераций: "+iterations+"\n";
-            document.getElementById("status").innerText+="Корень="+xnext.toFixed(3)+" найден с нужной точностью.";
+            document.getElementById("pointsholder").innerText += "x" + displayedpoints + " = " + xnext.toFixed(3) + " | f(x) = "+fnow(xnext).toFixed(3) + " | Итерации: "+iterations+".\n";
+            document.getElementById("status").innerText += "Корень = " + xnext.toFixed(3) + " найден с точностью " + dx + ".";
         }
+      
+        if(root==0)
+          {
+            document.getElementById("pointsholder").innerText += "x"+ displayedpoints +" = " + xnext.toFixed(3) + " | f(x) = "+fnow(xnext).toFixed(3) + " | Итерации: "+iterations+".\n";
+          }
+      
         //else document.getElementById("status").innerText+="Корень="+xnext+" найден с нужной точностью.";
       
-      
-        await sleep(delay*1.5);
+        
+        await wait(delay*1.5);
     }
-    if(displayedpoints==0) document.getElementById("pointsholder").innerText ="Корня не нашлось";
+    if(displayedpoints==0) document.getElementById("pointsholder").innerText ="Корни не найдены";
 }
